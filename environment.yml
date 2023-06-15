@@ -3,32 +3,32 @@ channels:
   - conda-forge
 dependencies:
   - python=3
-  - keras
-  - eli5
-  - pytorch_geometric
-  - statsmodels
-  - ipython
-  - matplotlib
-  - notebook
-  - lime
-  - pytorch
-  - modin
-  - jupyter
-  - plotly
-  - scipy
-  - networkx
-  - scikit-learn
-  - igraph
-  - pandas
-  - pyarrow
-  - pyreadstat
-  - polars
-  - seaborn
-  - shap
-  - dask
-  - tensorflow
-  - pymc3
-  - vaex
   - jupyterlab
-  - numpy
+  - notebook
+  - ipython
+  - jupyter
+  - dask
   - openpyxl
+  - scipy
+  - vaex
+  - pandas
+  - pyreadstat
+  - numpy
+  - polars
+  - pyarrow
+  - jupysql
+  - python-duckdb
+  - duckdb-engine
+  - plotly
+  - matplotlib
+  - seaborn
+  - lime
+  - eli5
+  - shap
+  - scikit-learn
+  - statsmodels
+  - pymc3
+  - pytorch
+  - tensorflow
+  - pytorch_geometric
+  - keras
