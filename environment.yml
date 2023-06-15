@@ -1,0 +1,34 @@
+name: '0000'
+channels:
+  - conda-forge
+dependencies:
+  - python=3
+  - keras
+  - eli5
+  - pytorch_geometric
+  - statsmodels
+  - ipython
+  - matplotlib
+  - notebook
+  - lime
+  - pytorch
+  - modin
+  - jupyter
+  - plotly
+  - scipy
+  - networkx
+  - scikit-learn
+  - igraph
+  - pandas
+  - pyarrow
+  - pyreadstat
+  - polars
+  - seaborn
+  - shap
+  - dask
+  - tensorflow
+  - pymc3
+  - vaex
+  - jupyterlab
+  - numpy
+  - openpyxl
