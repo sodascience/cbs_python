@@ -27,6 +27,7 @@ dependencies:
   - shap
   - scikit-learn
   - statsmodels
+  - tidypolars
   - pymc3
   - pytorch
   - tensorflow
