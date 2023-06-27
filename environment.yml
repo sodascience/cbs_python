@@ -33,3 +33,4 @@ dependencies:
   - tensorflow
   - pytorch_geometric
   - keras
+  - imbalanced-learn
