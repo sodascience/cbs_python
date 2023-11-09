@@ -34,3 +34,4 @@ dependencies:
   - pytorch_geometric
   - keras
   - imbalanced-learn
+  - dgl
