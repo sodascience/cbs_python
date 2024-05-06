@@ -26,4 +26,8 @@ jupyter notebook --notebook-dir=H:
 That will open a jupyter notebook based on your shared disk (`H:`).
 
 
+## Contact
+This is a project by the [ODISSEI Social Data Science (SoDa)](https://odissei-data.nl/nl/soda/) team.
+Do you have questions, suggestions, or remarks on the technical implementation? File an issue in the
+issue tracker or feel free to contact [Erik-Jan van Kesteren](https://github.com/vankesteren).
 
