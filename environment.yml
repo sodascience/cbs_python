@@ -36,3 +36,4 @@ dependencies:
   - imbalanced-learn
   - dgl
   - optuna
+  - jupyterlab-optuna
