@@ -35,3 +35,4 @@ dependencies:
   - keras
   - imbalanced-learn
   - dgl
+  - optuna
