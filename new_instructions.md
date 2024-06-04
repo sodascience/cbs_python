@@ -1,5 +1,8 @@
 
 
+To create the YML file, you need to create your own environment outside the RA environment, in Python on Windows, using Mambaforge installed in C:\mambaforge. Follow the steps below to generate a text file and send it to us via email as a reply. With the text file, we can make the environment available for you within RA.
+
+
     On your own Windows system in Python, create a new environment named after the project code and activate it. As an example, we use project code 0000.
 
 a.       `conda create –n 0000`
