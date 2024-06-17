@@ -3,6 +3,7 @@
 # Script to approximate venv on RA for SICSS. Run on the snellius login node.
 # assume we don't need beautifulsoup4, QtPy, fastapi
 
+echo "loading modules" 
 
 module purge 
 module load 2023 
@@ -19,13 +20,11 @@ module load dask/2023.9.2-foss-2023a
 module load statsmodels/0.14.1-gfbf-2023a
 module load scikit-image/0.22.0-foss-2023a
 module load aiohttp/3.8.5-GCCcore-12.3.0
-module load IPython/8.14.0-GCCcore-12.3.0
 module load Graphviz/8.1.0-GCCcore-12.3.0
 module load numba/0.58.1-foss-2023a
 module load plotly.py/5.16.0-GCCcore-12.3.0
-module load Jupyter-bundle/20230823-GCCcore-12.3.0
 
-# echo "installing from pip"
+echo "installing from pip"
 python -m venv .venv 
 source .venv/bin/activate
 pip install -r ossc/pip_requirements.txt
@@ -34,7 +33,6 @@ pip install -r ossc/pip_requirements.txt
 pip freeze > ossc/requirements_ossc.txt
 
 python ossc/compare_requirements.py
-
 
 deactivate 
 rm -rf .venv

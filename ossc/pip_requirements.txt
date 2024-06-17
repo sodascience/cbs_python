@@ -2,13 +2,11 @@ polars
 tensorboard
 optuna
 pyarrow
-duckdb # do we also need the executable?
 seaborn
 xarray
 torch_geometric
 graphviz
 openpyxl
-duckdb_engine
 optuna-dashboard
 pydantic
 # vaex ## failed
