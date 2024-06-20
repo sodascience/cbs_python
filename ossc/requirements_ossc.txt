@@ -173,6 +173,7 @@ PyNaCl @ file:///tmp/jenkins/build/PythonbundlePyPI/2023.06/GCCcore-12.3.0/PyNaC
 pyparsing @ file:///tmp/jenkins/build/PythonbundlePyPI/2023.06/GCCcore-12.3.0/pyparsing/pyparsing-3.1.0
 pyproject-metadata @ file:///tmp/jenkins/build/mesonpython/0.13.2/GCCcore-12.3.0/pyprojectmetadata/pyproject-metadata-0.7.1
 pyproject_hooks @ file:///tmp/jenkins/build/poetry/1.5.1/GCCcore-12.3.0/pyproject_hooks/pyproject_hooks-1.0.0
+pyreadstat==1.2.7
 pyrsistent @ file:///tmp/jenkins/build/poetry/1.5.1/GCCcore-12.3.0/pyrsistent/pyrsistent-0.19.3
 pytest @ file:///tmp/jenkins/build/PythonbundlePyPI/2023.06/GCCcore-12.3.0/pytest/pytest-7.4.0
 pytest-xdist @ file:///tmp/jenkins/build/PythonbundlePyPI/2023.06/GCCcore-12.3.0/pytestxdist/pytest-xdist-3.3.1
@@ -213,7 +214,7 @@ sphinxcontrib-jsmath @ file:///tmp/jenkins/build/PythonbundlePyPI/2023.06/GCCcor
 sphinxcontrib-qthelp @ file:///tmp/jenkins/build/PythonbundlePyPI/2023.06/GCCcore-12.3.0/sphinxcontribqthelp/sphinxcontrib-qthelp-1.0.3
 sphinxcontrib-serializinghtml @ file:///tmp/jenkins/build/PythonbundlePyPI/2023.06/GCCcore-12.3.0/sphinxcontribserializinghtml/sphinxcontrib-serializinghtml-1.1.5
 sphinxcontrib-websupport @ file:///tmp/jenkins/build/PythonbundlePyPI/2023.06/GCCcore-12.3.0/sphinxcontribwebsupport/sphinxcontrib-websupport-1.2.4
-SQLAlchemy==2.0.30
+SQLAlchemy==2.0.31
 statsmodels @ file:///tmp/jenkins/build/statsmodels/0.14.1/gfbf-2023a/statsmodels/statsmodels-0.14.1
 sympy @ file:///tmp/jenkins/build/sympy/1.12/gfbf-2023a/sympy-1.12
 tabulate @ file:///tmp/jenkins/build/PythonbundlePyPI/2023.06/GCCcore-12.3.0/tabulate/tabulate-0.9.0

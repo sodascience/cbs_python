@@ -96,7 +96,6 @@ prometheus_client
 prompt_toolkit
 pure-eval
 pyerfa
-pyreadstat
 python-dotenv
 python-json-logger
 python-multipart

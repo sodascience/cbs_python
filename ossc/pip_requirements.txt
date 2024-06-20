@@ -9,4 +9,5 @@ graphviz
 openpyxl
 optuna-dashboard
 pydantic
+pyreadstat
 # vaex ## failed
