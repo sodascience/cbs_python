@@ -1,0 +1,13 @@
+polars 
+tensorboard
+optuna
+pyarrow
+seaborn
+xarray
+torch_geometric
+graphviz
+openpyxl
+optuna-dashboard
+pydantic
+pyreadstat
+# vaex ## failed
