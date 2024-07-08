@@ -121,6 +121,7 @@ tensorflow-intel
 terminado
 tinycss2
 torchdata
+tornado
 traitlets
 traittypes
 typer
@@ -140,3 +141,4 @@ webcolors
 websocket-client
 websockets
 widgetsnbextension
+xyzservices

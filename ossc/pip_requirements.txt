@@ -1,7 +1,10 @@
+matplotlib
 polars 
 tensorboard
 tensorflow
 optuna
+scikit-image
+dask
 pyarrow
 seaborn
 xarray
