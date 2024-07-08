@@ -5,6 +5,7 @@ tensorflow
 optuna
 scikit-image
 dask
+torch
 pyarrow
 seaborn
 xarray

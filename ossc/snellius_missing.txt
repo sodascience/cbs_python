@@ -83,7 +83,6 @@ orjson
 overrides
 pandocfilters
 parso
-pillow
 ploomber-core
 ploomber-extension
 posthog
