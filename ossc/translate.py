@@ -72,12 +72,12 @@ def main(source_url, target_url):
     lines = read_lines(source_url)
     
     regular_requirements = [f"--find-links {find_torch_links}"]
-    #snellius = [f"--find-links {find_torch_links}"]
+    #snellius = [f"--find-links {find_torch_links}"] # legacy
     for line in lines:
         for_snellius, parsed_line = parse_line(line)
         if parsed_line:
             regular_requirements.append(parsed_line)
-            #if for_snellius:
+            #if for_snellius: # legacy
                 #snellius.append(line)
 
     write_lines(target_url, regular_requirements)

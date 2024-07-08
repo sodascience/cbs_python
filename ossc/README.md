@@ -21,7 +21,7 @@ The following procedure allows to do this.
     - creates a virtual environment and installs more packages from pip 
     - exports the exact requirements from this venv to the file defined in `OSSC_requirements`
     - translates these requirements to a "regular" requirements.txt file, defined by `RA_requirements`.
-    - compares these requirements to the `environment0000.txt` defined in the repository root. (This may not be of interest to most people.)
+    - compares these requirements to the `environment0000.txt` defined in the repository root. (Most people can probably ignore this.)
 
 4. Try to create the regular venv as follows
     ```bash

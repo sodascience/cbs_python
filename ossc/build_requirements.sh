@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Script to approximate venv on RA for SICSS. Run on the snellius login node.
-# assume we don't need beautifulsoup4, QtPy, fastapi
-
-
 declare OSSC_requirements="ossc/requirements_ossc.txt"
 declare RA_requirements="ossc/environment0000.txt"
 
