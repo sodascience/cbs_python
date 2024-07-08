@@ -3,6 +3,10 @@
 # Script to approximate venv on RA for SICSS. Run on the snellius login node.
 # assume we don't need beautifulsoup4, QtPy, fastapi
 
+
+declare OSSC_requirements="ossc/requirements_ossc.txt"
+declare RA_requirements="ossc/environment0000.txt"
+
 echo "loading modules" 
 
 module purge 
@@ -10,7 +14,6 @@ module load 2023
 module load Python/3.11.3-GCCcore-12.3.0
 module load SciPy-bundle/2023.07-gfbf-2023a
 module load scikit-learn/1.3.1-gfbf-2023a
-#module load PyTorch/2.1.2-foss-2023a-CUDA-12.1.1
 module load LLVM/14.0.6-GCCcore-12.3.0-llvmlite
 module load tqdm/4.66.1-GCCcore-12.3.0
 module load statsmodels/0.14.1-gfbf-2023a
@@ -19,19 +22,19 @@ module load Graphviz/8.1.0-GCCcore-12.3.0
 module load numba/0.58.1-foss-2023a
 module load plotly.py/5.16.0-GCCcore-12.3.0
 
-# module load TensorFlow/2.13.0-foss-2023a #-> see pip_requirements.txt
-# module load tensorboard/2.15.1-gfbf-2023a #-> see pip_requirements.txt
-#module load matplotlib/3.7.2-gfbf-2023a
-
 echo "installing from pip"
 python -m venv .venv 
 source .venv/bin/activate
 pip install -r ossc/pip_requirements.txt
 
+pip freeze > "$OSSC_requirements" 
 
-pip freeze > ossc/requirements_ossc.txt
+python ossc/translate.py --from "$OSSC_requirements" --to "$RA_requirements" 
 
-python ossc/compare_requirements.py
+#if you want to compare the requirements to the environment0000.txt at the repo root:
+#python ossc/compare_requirements.py
+# TODO: add the ossc_requirements variable here as well as an argument
+
 
 deactivate 
 rm -rf .venv

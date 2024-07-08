@@ -1,4 +1,5 @@
-
+"""Compare the requirements of the requirements in the OSSC with the requirements of the "main" environment000.txt file in the repository root
+"""
 import re 
 import pandas as pd
 

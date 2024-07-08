@@ -6,13 +6,10 @@ This script translates requirements from Snellius to regular pip, handling the f
 - Drops the `blist` package as resolving its installation is not considered worthwhile.
 """
 
+import argparse
 import re
 from itertools import compress
 
-# Input and output file paths
-infile = "ossc/requirements_ossc.txt"
-outfile_regular = "ossc/environment0000.txt"
-# outfile_snellius = "ossc/snellius.txt"
 
 # URL for finding specific torch packages
 find_torch_links = "https://data.pyg.org/whl/torch-2.2.2+cu121.html"
@@ -70,40 +67,37 @@ def convert_linked_package(line):
     return None
 
 
-def main():
+def main(source_file, target_file):
     """Main function to read, process, and write requirements."""
-    lines = read_lines(infile)
+    lines = read_lines(source_file)
     
-    regular = [f"--find-links {find_torch_links}"]
-    snellius = [f"--find-links {find_torch_links}"]
+    regular_requirements = [f"--find-links {find_torch_links}"]
+    #snellius = [f"--find-links {find_torch_links}"]
     for line in lines:
         for_snellius, parsed_line = parse_line(line)
         if parsed_line:
-            regular.append(parsed_line)
-            if for_snellius:
-                snellius.append(line)
+            regular_requirements.append(parsed_line)
+            #if for_snellius:
+                #snellius.append(line)
 
-    write_lines(outfile_regular, regular)
-    # write_lines(outfile_snellius, snellius)
+    write_lines(target_file, regular_requirements)
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+            '--from', type=str,
+            dest="from_file",
+            default="ossc/requirements_ossc.txt",
+            help="The snellius/OSSC requireements to translate.")
 
+    parser.add_argument(
+            '--to', type=str,
+            dest="to_file",
+            default="ossc/environment0000.txt",
+            help="The file with the 'regular' pip requirements.")
 
+    args = parser.parse_args()
 
-# missing: 
-#----------
-# pyparsing==3.1.0
-# --find-links https://data.pyg.org/whl/torch-2.2.2+cu121.html
-# tensorboard==2.13.0
-# tensorboard-data-server==0.7.1
-# tensorboard-plugin-profile==2.13.1
-# tensorboard-plugin-wit==1.8.1
-# tensorflow==2.13.0
-# tensorflow-estimator==2.13.0
-# mpi4py==3.1.4
-
-
-
+    main(args.from_file, args.to_file)
 
