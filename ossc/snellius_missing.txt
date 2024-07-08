@@ -13,6 +13,7 @@ blake3
 bleach
 bqplot
 branca
+cachetools
 comm
 debugpy
 defusedxml
@@ -67,21 +68,17 @@ jupyterlab-optuna
 jupyterlab_pygments
 jupyterlab_server
 jupyterlab_widgets
-libclang
 lime
 matplotlib-inline
 mistune
 mkl
-ml-dtypes
 monotonic
-namex
 nbclient
 nbconvert
 nbformat
 nest-asyncio
 notebook
 notebook_shim
-optree
 orjson
 overrides
 pandocfilters
@@ -121,7 +118,6 @@ stack-data
 starlette
 tbb
 tensorflow-intel
-tensorflow-io-gcs-filesystem
 terminado
 tinycss2
 torchdata
