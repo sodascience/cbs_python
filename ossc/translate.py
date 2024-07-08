@@ -67,9 +67,9 @@ def convert_linked_package(line):
     return None
 
 
-def main(source_file, target_file):
+def main(source_url, target_url):
     """Main function to read, process, and write requirements."""
-    lines = read_lines(source_file)
+    lines = read_lines(source_url)
     
     regular_requirements = [f"--find-links {find_torch_links}"]
     #snellius = [f"--find-links {find_torch_links}"]
@@ -80,7 +80,7 @@ def main(source_file, target_file):
             #if for_snellius:
                 #snellius.append(line)
 
-    write_lines(target_file, regular_requirements)
+    write_lines(target_url, regular_requirements)
 
 
 if __name__ == "__main__":

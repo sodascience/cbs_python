@@ -30,11 +30,7 @@ pip install -r ossc/pip_requirements.txt
 pip freeze > "$OSSC_requirements" 
 
 python ossc/translate.py --from "$OSSC_requirements" --to "$RA_requirements" 
-
-#if you want to compare the requirements to the environment0000.txt at the repo root:
-#python ossc/compare_requirements.py
-# TODO: add the ossc_requirements variable here as well as an argument
-
+python ossc/compare_requirements.py --ossc_src "$OSSC_requirements"
 
 deactivate 
 rm -rf .venv
