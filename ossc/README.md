@@ -1,11 +1,11 @@
 
-### Virtual environments on the OSSC and on the RA together
+## Virtual environments on the OSSC and on the RA together
 
 It is important to have the *exactly* same versions on both computers. Because, on the OSSC, it's recommended to use software from the modules as much as possible, and modules tend to lag slightly behind the latest versions, one should first create a virtual environment on snellius, and then derive the requirements for the environment on the RA based on this. 
 
 The following procedure allows to do this.
 
-#### Building the virtual environments
+### Building the virtual environments
 
 0. Access a *regular* snellius node.
 1. Define software to load from snellius with `module load XYZ` in `modules.sh`. Try to have as much software as possible in this file.
@@ -41,9 +41,9 @@ The following procedure allows to do this.
 7. Give `OSSC_requirements` and `modules.sh` to SURF for installation on the OSSC. 
 
 
-#### Using the virtual environment on the OSSC
+### Using the virtual environment on the OSSC
 
-After SURF has installed the environment -- say it's called `ossc_env/bin/activate` --, you should be able to use it as follows
+After SURF has installed the environment -- say it's stored under `ossc_env/` --, you should be able to use it as follows
 
 ```bash
 #!/bin/bash
