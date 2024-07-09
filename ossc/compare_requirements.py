@@ -5,6 +5,8 @@ import argparse
 import re 
 import pandas as pd
 
+REFERENCE_ENVIRONMENT = "environment0000.txt"
+
 def read_lines(filename):
     """Read lines from a file and strip trailing whitespace."""
     with open(filename) as file:
@@ -62,7 +64,7 @@ def extract_packages(input_requirements: list):
 
 def main(source_url: str):
     urls = {
-        "ra": "environment0000.txt",
+        "ra": REFERENCE_ENVIRONMENT,
         "snellius": source_url
     }
     outfile_missing = "ossc/snellius_missing.txt"
