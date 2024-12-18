@@ -36,3 +36,5 @@ dependencies:
   - dgl
   - optuna
   - jupyterlab-optuna
+  - networkx
+  - python-igraph
