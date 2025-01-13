@@ -26,6 +26,8 @@ dependencies:
   - eli5
   - shap
   - scikit-learn
+  - interpretml
+  - metasyn
   - statsmodels
   - pymc3
   - pytorch
