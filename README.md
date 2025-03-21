@@ -1,66 +1,106 @@
-## Install Python at CBS
+## Configuring Python in CBS Remote Access (RA)
 
-Python is not installed by default at the CBS RA (yet). In order to use Python you need to ask CBS (`microdata@cbs.nl`) to activate it for you. 
+**Python is not installed by default at CBS RA (yet).** To activate Python, contact the CBS microdata team at [`microdata@cbs.nl`](mailto:microdata@cbs.nl).
 
-There are a few packages that are installed by default (e.g., pandas, pyreadstat, matplotlib). 
+### Default Python Packages
 
-If you need specific versions, you need to email CBS a requirements.txt file with your requirements. This repository has a standard requirements.txt (updated in March 2025) with most of the packages that researchers use. 
+By default, some packages are available in Python at CBS RA, such as `pandas`, `pyreadstat` or `matplotlib`
 
+If you require additional packages or specific versions, follow the steps below to create and submit your own Python environment.
 
-To create the txt file from scratch, you need to create your own environment outside the RA environment, in Python on Windows, using Mambaforge installed in C:\mambaforge. Follow the steps below to generate a text file and send it to us via email as a reply. With the text file, we can make the environment available for you within RA.
+---
 
+### Creating a Custom Python Environment
 
-    On your own Windows system in Python, create a new environment named after the project code and activate it. As an example, we use project code 0000.
+Follow these instructions to set up and submit a customized Python environment. You need to use a **Windows** computer.
 
-a.       `conda create –n 0000`
+#### Step 1: Check Existing Environment
 
-b.       `conda activate 0000`
+- Check if `environment0000.txt` (replace `0000` with your actual project number) already contains the required packages and suitable versions.
+- **If yes:** Send this file directly to CBS.
+- **If no:** Continue to Step 2.
 
-    Install pip.
-        `conda install pip`
+#### Step 2: Create the Environment (Windows + Conda)
 
-    Then, install the required packages with pip.
-        `pip install package_name`
+Install conda locally (only needed if you do not already have Conda installed):
+- Follow the official Conda installation instructions [here](https://conda.io/projects/conda/en/latest/user-guide/install/index.html#regular-installation).
+- If you're unfamiliar with command-line tools, consider installing [Anaconda](https://www.anaconda.com/products/individual) instead.
 
-    Export the environment with pip.
-        `pip freeze > C:\temp\environment0000.txt`
-        Check that the file does not contain references to local paths (file://).
-        If it does, use the following command:
-        pip list --format=freeze > C:\temp\environment0000.txt
+On your local Windows machine:
 
-    Test the environment by removing and recreating it.
-        `rd /q /s <path to python>\envs\0000`
-        `conda create –n 0000`
-        `conda activate 0000`
-        `conda install pip`
-        `pip install –r C:\temp\environment0000.txt`
-        Test the Python environment.
-
-    Send the environment text file to us via email.
-
- 
-Note! If you want to use Jupyter Notebook or Spyder, you need to install them in the environment as well.
-
-## Local install instructions (miniconda)
-**This step is only necessary if you don't have conda installed already**:
-- Follow the instructions [here](https://conda.io/projects/conda/en/latest/user-guide/install/index.html#regular-installation). Use Anaconda if you are not comfortable with terminals (CLI).
-
-
-## Use Python at CBS
-
-We recommend using Python through Visual Studio Code (installed by default). You will need to change the Python interpreter (by clicking 
-
-In the RA
 ```sh
-conda activate 0000.
+conda create -n 0000 python
+conda activate 0000
+conda install pip
+pip install package_name
+```
+
+Replace `package_name` with the packages you need (e.g., `pip install numpy`). If you want to install all the packages in the requirements.txt file in this repository, use `pip install -r requirements.txt`
+
+**Note:** If using Jupyter Notebook or Spyder, install these explicitly, e.g.:
+
+```sh
+pip install jupyter spyder
+```
+
+#### Step 3: Export the Environment
+
+Export the environment into a requirements file:
+
+```sh
+pip freeze > C:\temp\environment0000.txt
+```
+
+Check `environment0000.txt` for local paths (`file://`). If found, regenerate using:
+
+```sh
+pip list --format=freeze > C:\temp\environment0000.txt
+```
+
+#### Step 4: Verify Environment
+
+Validate your environment by removing and recreating it:
+
+```sh
+conda remove -n 0000 --all
+conda create -n 0000 
+conda activate 0000
+conda install pip
+pip install -r C:\temp\environment0000.txt
+```
+
+Test thoroughly before submission by running python and importing your packages one by one.
+
+#### Step 5: Submit Your Environment
+
+Send your verified `environment0000.txt`  (replace 0000 by your project number) to CBS via email.
+
+
+
+---
+
+## Using Python at CBS RA
+
+We recommend to use Python through Visual Studio Code (VS Code), installed by default:
+
+- In VS Code, select the Python interpreter in the bottom-right corner of the editor.
+
+You could also use Python through Jupyter in RA, for that, open an Anaconda terminal in the RA and run:
+
+```sh
+conda activate 0000
 jupyter notebook --notebook-dir=H:
 ```
 
-That will open a jupyter notebook based on your shared disk (`H:`).
+This opens Jupyter in your shared directory (`H:`).
 
+---
 
-## Contact
-This is a project by the [ODISSEI Social Data Science (SoDa)](https://odissei-data.nl/nl/soda/) team.
-Do you have questions, suggestions, or remarks on the technical implementation? File an issue in the
-issue tracker or feel free to contact [Erik-Jan van Kesteren](https://github.com/vankesteren).
+## Support & Contact
 
+This documentation is maintained by the [ODISSEI Social Data Science (SoDa)](https://odissei-data.nl/nl/soda/) team.
+
+For technical questions or suggestions:
+
+- File an issue in the project's issue tracker, or
+- Contact [Javier Garcia-Bernardo](https://github.com/jgarciab).
