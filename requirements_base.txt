@@ -1,0 +1,47 @@
+# Notebooks and ipython
+jupyterlab
+notebook
+ipython
+jupyter
+# Data handling
+dask
+openpyxl
+scipy
+pandas
+pyreadstat
+numpy
+polars
+pyarrow
+jupysql
+duckdb
+duckdb-engine
+# Visualization
+plotly
+matplotlib
+seaborn
+hvplot
+# Networks
+networkx
+igraph
+netcbs
+# ML and interpretability
+scikit-learn
+lime
+eli5
+shap
+imbalanced-learn
+interpret
+optuna
+jupyterlab-optuna
+# Synthetic data //
+metasyn
+# Statistics 
+statsmodels
+#pymc3 (pymc3 is at the current version not playing nicely with the other packages in pip)
+# Deep learning
+torch
+#tensorflow (nit does not play nicely with pip)
+torch-geometric
+keras
+dgl
+
