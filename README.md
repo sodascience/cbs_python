@@ -96,7 +96,7 @@ This opens Jupyter in your shared directory (`H:`).
 
 ---
 
-## Support & Contact
+## Contact
 
 This documentation is maintained by the [ODISSEI Social Data Science (SoDa)](https://odissei-data.nl/nl/soda/) team.
 
