@@ -1,0 +1,63 @@
+name: sane
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.12
+  # Notebooks and IPython
+  - jupyterlab
+  - notebook
+  - ipython
+  - jupyter
+
+  # Data handling
+  - dask
+  - openpyxl
+  - scipy
+  - pandas
+  - pyreadstat
+  - numpy
+  - polars
+  - pyarrow
+  - jupysql
+  - duckdb
+  - duckdb-engine
+
+  # Visualization
+  - plotly
+  - matplotlib
+  - seaborn
+  - hvplot
+
+  # Networks
+  - networkx
+  - igraph
+  - pip
+  # - pip:
+  #     - netcbs  # pip-only
+
+  # ML and interpretability
+  - scikit-learn
+  - lime
+  - eli5
+  - shap
+  - imbalanced-learn
+  - interpret
+  - optuna
+  # - jupyterlab-optuna
+
+  # Synthetic data
+  - pip:
+      - metasyn  # pip-only
+
+  # Statistics
+  - statsmodels
+  #- pymc3  # compatibility issues
+
+  # # Deep learning (not needed in SANE)
+  # - pytorch
+  # - keras
+  # - dgl
+  # - pip:
+  #     - torch-geometric  # usually installed via pip due to complex dependencies
+  # - tensorflow  # Not included due to compatibility issues
