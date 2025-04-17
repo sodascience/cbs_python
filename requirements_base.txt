@@ -26,6 +26,7 @@ igraph
 netcbs
 # ML and interpretability
 scikit-learn
+catboost
 lime
 eli5
 shap
