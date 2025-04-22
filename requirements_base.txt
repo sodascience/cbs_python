@@ -33,6 +33,7 @@ shap
 imbalanced-learn
 interpret
 optuna
+ray[tune]
 jupyterlab-optuna
 # Synthetic data //
 metasyn
