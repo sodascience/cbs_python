@@ -4,6 +4,7 @@ channels:
 
 dependencies:
   - python=3.12
+
   # Notebooks and IPython
   - jupyterlab
   - notebook
@@ -22,19 +23,21 @@ dependencies:
   - jupysql
   - duckdb
   - duckdb-engine
+  - arrow               
+  - python-dateutil    
 
   # Visualization
   - plotly
   - matplotlib
   - seaborn
   - hvplot
+  - bokeh            
+  - altair           
+  - panel            
 
   # Networks
   - networkx
   - igraph
-  - pip
-  # - pip:
-  #     - netcbs  # pip-only
 
   # ML and interpretability
   - scikit-learn
@@ -44,20 +47,32 @@ dependencies:
   - imbalanced-learn
   - interpret
   - optuna
-  # - jupyterlab-optuna
+  - xgboost           
+  - lightgbm          
+  - catboost          
+  - joblib            
+  - mlflow            
 
-  # Synthetic data
+  # NLP and text
+  - nltk              
+  - spacy             
+
+  # SQL / DB Interface
+  - sqlalchemy        
+
+  # Data validation and config
+  - pandera           
+  - pydantic          
+
+  # Parallel / performance
+  - multiprocess      
+  - threadpoolctl     
+
+  # File/HTML/PDF parsing 
+  - beautifulsoup4    
+  - lxml              
+
+  # Pip-only packages
+  - pip
   - pip:
-      - metasyn  # pip-only
-
-  # Statistics
-  - statsmodels
-  #- pymc3  # compatibility issues
-
-  # # Deep learning (not needed in SANE)
-  # - pytorch
-  # - keras
-  # - dgl
-  # - pip:
-  #     - torch-geometric  # usually installed via pip due to complex dependencies
-  # - tensorflow  # Not included due to compatibility issues
+      - metasyn  # synthetic data
