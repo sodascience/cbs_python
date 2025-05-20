@@ -33,6 +33,7 @@ eli5
 shap
 imbalanced-learn
 interpret
+catboost
 optuna
 ray[tune]
 jupyterlab-optuna
