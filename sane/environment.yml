@@ -33,7 +33,8 @@ dependencies:
   - hvplot
   - bokeh            
   - altair           
-  - panel            
+  - panel      
+  - python-kaleido
 
   # Networks
   - networkx
@@ -52,6 +53,15 @@ dependencies:
   - catboost          
   - joblib            
   - mlflow            
+  - dowhy
+  - causalml 
+  - causal-learn
+  - pgmpy 
+  - causalnex 
+  - pymc
+  - numpyro
+  - blackjax 
+  - nutpie
 
   # NLP and text
   - nltk              
