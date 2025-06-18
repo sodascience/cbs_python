@@ -29,6 +29,11 @@ dependencies:
   # Visualization
   - plotly
   - matplotlib
+  - geopandas
+  - shapely
+  - fiona
+  - cartopy
+  - folium
   - seaborn
   - hvplot
   - bokeh            
