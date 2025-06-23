@@ -1,0 +1,77 @@
+# Notebooks and IPython
+jupyterlab
+notebook
+ipython
+jupyter
+
+# Data handling
+dask
+openpyxl
+scipy
+pandas
+pyreadstat
+numpy
+polars
+pyarrow
+jupysql
+duckdb
+duckdb-engine
+arrow
+python-dateutil
+
+# Visualization
+plotly
+matplotlib
+geopandas
+shapely
+fiona
+cartopy
+folium
+geojson
+pyproj
+seaborn
+hvplot
+bokeh
+altair
+panel
+kaleido
+
+# Networks
+networkx
+igraph
+
+# ML and interpretability
+scikit-learn
+lime
+eli5
+shap
+imbalanced-learn
+interpret
+optuna
+xgboost
+lightgbm
+catboost
+joblib
+mlflow
+
+# NLP and text
+nltk
+spacy
+
+# SQL / DB Interface
+sqlalchemy
+
+# Data validation and config
+pandera
+pydantic
+
+# Parallel / performance
+multiprocess
+threadpoolctl
+
+# File/HTML/PDF parsing
+beautifulsoup4
+lxml
+
+# Pip-only
+metasyn
