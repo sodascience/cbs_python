@@ -65,7 +65,6 @@ dependencies:
   - causalml 
   - causal-learn
   - pgmpy 
-  - causalnex 
   - pymc
   - numpyro
   - blackjax 
@@ -94,3 +93,4 @@ dependencies:
   - pip
   - pip:
       - metasyn  # synthetic data
+      - causalnex 
