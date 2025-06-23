@@ -93,4 +93,3 @@ dependencies:
   - pip
   - pip:
       - metasyn  # synthetic data
-      - causalnex 
