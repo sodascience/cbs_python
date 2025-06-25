@@ -31,7 +31,7 @@ dependencies:
   - spacy
   - flask
   - transformers
-  - torch
+  - pytorch
 
   # Parallel / performance
   - multiprocess      
