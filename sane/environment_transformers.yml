@@ -1,0 +1,37 @@
+name: sane
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.12
+
+  # Notebooks and IPython
+  - jupyterlab
+  - notebook
+  - ipython
+  - jupyter
+
+  # Data handling
+  - scipy
+  - pandas
+  - numpy
+  - polars
+  - pyarrow
+  - jupysql
+  - arrow               
+  - python-dateutil    
+
+  # ML and interpretability
+  - scikit-learn
+  - catboost          
+  - joblib            
+
+  # NLP and text
+  - nltk              
+  - spacy
+  - flask
+  - transformers
+
+  # Parallel / performance
+  - multiprocess      
+  - threadpoolctl     
