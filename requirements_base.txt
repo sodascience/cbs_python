@@ -5,11 +5,14 @@ ipython
 jupyter
 # Data handling
 dask
+h5py
 openpyxl
 scipy
 pandas
 pyreadstat
 numpy
+numba
+jax
 polars
 pyarrow
 jupysql
@@ -28,14 +31,17 @@ netcbs
 # ML and interpretability
 scikit-learn
 catboost
+xgboost
 lime
 eli5
 shap
 imbalanced-learn
 interpret
-catboost
 optuna
 ray[tune]
+torchtune
+peft
+hydra-core
 jupyterlab-optuna
 # Synthetic data //
 metasyn
@@ -46,6 +52,13 @@ statsmodels
 torch
 #tensorflow (nit does not play nicely with pip)
 torch-geometric
-keras
-dgl
+#keras
+#dgl
+splink
+gensim
+pytorch-lightning
+transformers
+umap-learn
+tensorboard
+json5
 
