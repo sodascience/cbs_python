@@ -38,7 +38,7 @@ shap
 imbalanced-learn
 interpret
 optuna
-ray[tune]
+#ray[tune]
 # Strongly recommend the nightly build on torchtune so we can use all the custom functionality we've been building
 # pip install --pre torchtune --extra-index-url https://download.pytorch.org/whl/nightly/cpu
 torchtune
@@ -66,4 +66,4 @@ torchao
 wandb
 tensorboard
 json5
-annoy
+#annoy
