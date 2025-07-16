@@ -54,6 +54,11 @@ statsmodels
 torch
 #tensorflow (nit does not play nicely with pip)
 torch-geometric
+pyg-library
+torch-sparse
+torch‑scatter
+torch-quiver
+intel-extension-for-pytorch
 #keras
 #dgl
 splink
