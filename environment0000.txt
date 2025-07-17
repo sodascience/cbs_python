@@ -198,6 +198,7 @@ pycparser==2.22
 pycryptodomex==3.23.0
 pydantic==2.11.7
 pydantic_core==2.33.2
+pyg-lib==0.4.0+pt27cpu
 Pygments==2.19.2
 pynndescent==0.5.13
 pyparsing==3.2.3
@@ -264,6 +265,10 @@ tokenizers==0.21.2
 toolz==1.0.0
 torch==2.7.1
 torch-geometric==2.6.1
+torch_cluster==1.6.3+pt27cpu
+torch_scatter==2.1.2+pt27cpu
+torch_sparse==0.6.18+pt27cpu
+torch_spline_conv==1.2.2+pt27cpu
 torchao==0.11.0
 torchdata==0.11.0
 torchmetrics==1.7.3
