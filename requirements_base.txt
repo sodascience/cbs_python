@@ -47,24 +47,30 @@ hydra-core
 jupyterlab-optuna
 # Synthetic data //
 metasyn
+metasyn-disclosure
 # Statistics 
 statsmodels
 #pymc3 (pymc3 is at the current version not playing nicely with the other packages in pip)
 # Deep learning
-torch
+torch==2.8
 #tensorflow (nit does not play nicely with pip)
 torch-geometric
-pyg-library
+# PyG CPU wheels for torch 2.8 (win_amd64, linux, macOS universal2; cp39-cp313)
+--find-links https://data.pyg.org/whl/torch-2.8.0+cpu.html
+pyg-lib  # has win_amd64 + linux + macOS universal2 wheels on this index
 torch-sparse
-torch‑scatter
-torch-quiver
-intel-extension-for-pytorch
+torch-scatter
+torch-cluster
+torch-spline-conv
+#torch-quiver #not yet available for windows
+#intel-extension-for-pytorch #not yet available for windows 
 #keras
 #dgl
 splink
 gensim
 pytorch-lightning
 transformers
+hf-transfer
 umap-learn
 inspect-ai
 torchao
