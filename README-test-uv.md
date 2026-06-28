@@ -6,7 +6,7 @@
 
 By default, some packages are available in Python at CBS RA, such as `pandas`, `pyreadstat` or `matplotlib`
 
-If you require additional packages or specific versions, follow the steps below to create and submit your own Python environment.
+If you require additional packages or specific versions, follow the steps below to create and submit your own Python environment. UV is able to create a library of dependencies that can run on multiple OS. However, to install dependencies specifically for Windows follow the next steps.
 
 ---
 
@@ -20,44 +20,72 @@ Follow these instructions to set up and submit a customized Python environment. 
 - **If yes:** Send this file directly to CBS.
 - **If no:** Continue to Step 2.
 
-#### Step 2: Create the Environment (Windows + Conda)
+#### Step 2: Create the Environment (Windows + UV)
 
-Install conda locally (only needed if you do not already have Conda installed):
-- Follow the official Conda installation instructions [here](https://conda.io/projects/conda/en/latest/user-guide/install/index.html#regular-installation).
-- If you're unfamiliar with command-line tools, consider installing [Anaconda](https://www.anaconda.com/products/individual) instead.
+Install UV locally (only needed if you do not already have UV installed):
+- Follow the official UV installation instructions [here](https://docs.astral.sh/uv/getting-started/installation/).
 
-On your local Windows machine:
+
+On your local Terminal machine:
+
+If the project has not been initialized with uv then write the
+next command in your machine terminal:
 
 ```sh
-conda create -n 0000 python
-conda activate 0000
-conda install pip
-pip install package_name
+uv init --python python_version
 ```
 
-Replace `package_name` with the packages you need (e.g., `pip install numpy`). If you want to install all the packages in the requirements.txt file in this repository, use `pip install -r requirements.txt`
+If the project requires to run the code outside the RA environment then it is possible to select on which OS the code should run.
 
-**Note:** If using Jupyter Notebook or Spyder, install these explicitly, e.g.:
+in the pyproject.toml file insert the following lines:
+
+[tool.uv]
+environments = [
+    "sys_platform == 'win32'",
+    "sys_platform == 'darwin' and platform_machine == 'arm64'",
+]
+
+It is possible to add more OS system
+
+[tool.uv]
+environments = [
+    "sys_platform == 'win32'",
+    "sys_platform == 'linux'",
+    "sys_platform == 'darwin' and platform_machine == 'arm64'",
+]
+
+
+To add a package
+```sh
+uv add package_name
+```
+
+
+Aternatively If you want to install all the packages in the requirements.txt file in this repository, use `uv add --bounds exact -r requirements_base.txt` this command will pin the exact dependency version
+
+**(to be updated with uv)Note:** If using Jupyter Notebook or Spyder, install these explicitly, e.g.:
 
 ```sh
 pip install jupyter spyder
 ```
 
-#### Step 3: Export the Environment
+#### Step 4: Export the Environment (Windows + UV)
 
 Export the environment into a requirements file:
 
 ```sh
-pip freeze > C:\temp\environment0000.txt
+uv pip compile requirements_base.txt --python-version 3.12 --python-platform windows --no-annotate --no-header -o environment0000.txt
 ```
 
-Check `environment0000.txt` for local paths (`file://`). If found, regenerate using:
-
+Aternatively If you want to export a requirement.txt that contains dependencies for different platforms use
 ```sh
-pip list --format=freeze > C:\temp\environment0000.txt
+uv export --format requirements-txt --no-hashes --no-header --no-annotate --no-emit-project --python 3.12 |
+  ForEach-Object { ($_ -split ';')[0].TrimEnd() } |
+  Set-Content -Encoding ascii environment_9424.txt
 ```
 
-#### Step 4: Verify Environment
+
+#### (update with UV)Step 4: Verify Environment
 
 Validate your environment by removing and recreating it:
 
@@ -79,7 +107,7 @@ Send your verified `environment0000.txt`  (replace 0000 by your project number) 
 
 ---
 
-## Using Python at CBS RA
+## (update with UV) Using Python at CBS RA 
 
 We recommend to use Python through Visual Studio Code (VS Code), installed by default:
 
