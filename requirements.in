@@ -1,0 +1,92 @@
+# Keep always these for CBS
+jupyterlab # notebook IDE
+notebook # classic Jupyter notebook interface
+ipython # interactive Python shell
+jupyter # Jupyter meta-package
+openpyxl # read/write Excel files
+pyreadstat # read SPSS/SAS/Stata files
+pandas # dataframes
+numpy # arrays and numerical computing
+scipy # scientific computing
+polars # fast dataframes
+duckdb # in-process SQL database
+duckdb-engine # SQLAlchemy driver for duckdb
+ibis # dataframe API over SQL backends
+matplotlib # plotting
+seaborn # statistical plotting
+networkx # graph analysis
+igraph # fast graph analysis
+netcbs # CBS-specific helpers
+scikit-learn # classic ML
+metasyn # synthetic data generation
+metasyn-disclosure # disclosure control for synthetic data
+PyYAML # YAML parsing
+
+## Optional packages, specific for 9424
+# Data handling
+dask # parallel/out-of-core dataframes
+h5py # HDF5 file format
+numba # JIT compilation for numerical code
+jax # array computing with autodiff/JIT
+pyarrow # Arrow/Parquet file format
+jupysql # run SQL in notebooks
+
+# Visualization
+plotly # interactive plots
+hvplot # high-level plotting on top of holoviews
+kaleido # static image export for plotly
+
+# ML and interpretability
+#catboost
+#lime
+eli5 # model inspection/explanation
+shap # SHAP value model explanations
+captum # PyTorch model interpretability
+#imbalanced-learn
+#interpret
+optuna # hyperparameter optimization
+#ray[tune]
+# Strongly recommend the nightly build on torchtune so we can use all the custom functionality we've been building
+# pip install --pre torchtune --extra-index-url https://download.pytorch.org/whl/nightly/cpu
+#torchtune
+#peft
+hydra-core # config management
+#hydra-optuna-sweeper
+jupyterlab-optuna # Optuna dashboard in JupyterLab
+# Statistics
+statsmodels # statistical models
+#pymc3 (pymc3 is at the current version not playing nicely with the other packages in pip)
+lifelines # survival analysis
+# Deep learning
+torch # deep learning framework
+#tensorflow (nit does not play nicely with pip)
+torch-geometric # graph neural networks
+# PyG CPU wheels for torch 2.9 (win_amd64, linux, macOS universal2; cp39-cp313)
+# see [tool.uv.pip] find-links in pyproject.toml for the wheel index URL
+pyg-lib; sys_platform != "darwin" or platform_machine != "arm64"  # no macOS arm64 wheel for this torch build on data.pyg.org # PyG acceleration library
+torch-sparse # sparse tensor ops for PyG
+torch-scatter # scatter ops for PyG
+torch-cluster # clustering ops for PyG
+torch-spline-conv # spline-based conv ops for PyG
+#torch-quiver #not yet available for windows
+#intel-extension-for-pytorch #not yet available for windows
+#keras
+#dgl
+gensim # topic modeling/word embeddings
+#pytorch-lightning
+transformers # pretrained NLP/LLM models
+umap-learn # dimensionality reduction
+#inspect-ai
+torchao # PyTorch quantization/optimization
+wandb # experiment tracking
+#mlflow
+tensorboard # training visualization
+flash-attn; sys_platform == "linux" #attention-based learning faster; CUDA build, no official wheels for macOS/Windows
+accelerate # multi-GPU/mixed-precision training helper
+#annoy
+# Configuration files
+json5 # JSON5 parsing
+## Testing
+pytest # testing framework
+ruff # linter/formatter
+pre-commit # git hook manager
