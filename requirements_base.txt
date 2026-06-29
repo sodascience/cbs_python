@@ -18,6 +18,7 @@ pyarrow
 jupysql
 duckdb
 duckdb-engine
+ibis
 # Visualization
 plotly
 matplotlib
@@ -30,29 +31,31 @@ igraph
 netcbs
 # ML and interpretability
 scikit-learn
-catboost
-xgboost
-lime
+#catboost
+#lime
 eli5
 shap
-imbalanced-learn
-interpret
+captum
+#imbalanced-learn
+#interpret
 optuna
 #ray[tune]
 # Strongly recommend the nightly build on torchtune so we can use all the custom functionality we've been building
 # pip install --pre torchtune --extra-index-url https://download.pytorch.org/whl/nightly/cpu
-torchtune
-peft
+#torchtune
+#peft
 hydra-core
+#hydra-optuna-sweeper
 jupyterlab-optuna
-# Synthetic data //
+# Synthetic data 
 metasyn
 metasyn-disclosure
 # Statistics 
 statsmodels
 #pymc3 (pymc3 is at the current version not playing nicely with the other packages in pip)
+lifelines # survival analysis
 # Deep learning
-torch==2.8
+torch>=2.8
 #tensorflow (nit does not play nicely with pip)
 torch-geometric
 # PyG CPU wheels for torch 2.8 (win_amd64, linux, macOS universal2; cp39-cp313)
@@ -66,15 +69,22 @@ torch-spline-conv
 #intel-extension-for-pytorch #not yet available for windows 
 #keras
 #dgl
-splink
 gensim
-pytorch-lightning
+#pytorch-lightning
 transformers
-hf-transfer
 umap-learn
-inspect-ai
+#inspect-ai
 torchao
 wandb
+#mlflow
 tensorboard
-json5
+flash-attn #attention-based learning faster
+accelerate
 #annoy
+# Configuration files
+json5
+PyYAML
+## Testing
+pytest
+ruff
+pre-commit
