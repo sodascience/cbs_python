@@ -58,12 +58,12 @@ statsmodels # statistical models
 #pymc3 (pymc3 is at the current version not playing nicely with the other packages in pip)
 lifelines # survival analysis
 # Deep learning
-torch # deep learning framework
+torch ==2.9.0 # deep learning framework
 #tensorflow (nit does not play nicely with pip)
 torch-geometric # graph neural networks
 # PyG CPU wheels for torch 2.9 (win_amd64, linux, macOS universal2; cp39-cp313)
 # see [tool.uv.pip] find-links in pyproject.toml for the wheel index URL
-pyg-lib; sys_platform != "darwin" or platform_machine != "arm64"  # no macOS arm64 wheel for this torch build on data.pyg.org # PyG acceleration library
+pyg-lib  # no macOS arm64 wheel for this torch build on data.pyg.org # PyG acceleration library
 torch-sparse # sparse tensor ops for PyG
 torch-scatter # scatter ops for PyG
 torch-cluster # clustering ops for PyG
