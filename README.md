@@ -118,9 +118,6 @@ a URL instead — for example the PyTorch Geometric (PyG) wheels used by
 and `uv lock`) and under `[tool.uv.pip]` (used by `uv pip compile`):
 
 ```toml
-[tool.uv]
-find-links = ["https://data.pyg.org/whl/torch-2.9.0+cpu.html"]
-
 [tool.uv.pip]
 find-links = ["https://data.pyg.org/whl/torch-2.9.0+cpu.html"]
 emit-find-links = true
