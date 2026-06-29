@@ -1,6 +1,6 @@
 """Quick smoke test that pyg-lib imports and is usable.
 
-Run with:  python test.py
+Run with: uv run python test.py
 (pyg-lib's import name is `pyg_lib`, with an underscore.)
 """
 
