@@ -104,7 +104,7 @@ jupyter-events==0.12.1
 jupyter-lsp==2.3.1
 jupyter-server==2.20.0
 jupyter-server-terminals==0.5.4
-jupyterlab==4.6.0
+jupyterlab==4.6.1
 jupyterlab-optuna==0.3.0
 jupyterlab-pygments==0.3.0
 jupyterlab-server==2.28.0
@@ -179,7 +179,6 @@ pyarrow==24.0.0
 pycparser==3.0
 pydantic==2.13.4
 pydantic-core==2.46.4
-pyg-lib==0.7.0+pt29cpu
 pygments==2.20.0
 pynndescent==0.6.0
 pyparsing==3.3.2

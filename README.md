@@ -1,21 +1,19 @@
 ## What this is for
 
-CBS Remote Access (RA) only lets you use Python packages that CBS has approved and
-installed in advance. To get a package approved, you submit a file listing exactly
-which packages (and versions) you need, and CBS installs them for you.
+CBS Remote Access (RA) only lets you use Python packages that CBS has approved and installed in advance. To get a package approved, you submit a file pip requirements.txt file listing exactly which packages (and versions) you need, and CBS installs them for you.
 
-This repository helps you build that file correctly, without needing to understand
-Python packaging in depth. You will:
+This repository helps you build that file correctly, without needing to understand Python packaging in depth. You will:
 
 1. Write down which packages you want, in a simple text file (`requirements.in`).
 2. Run two commands that figure out the exact versions that work together.
 3. Get a ready-to-send file (`environment0000.txt`) to email to CBS.
 4. Use the same setup on your own computer, outside of CBS RA, while you work.
 
-You only need to follow these steps once per project (and again whenever you want
-to add a new package).
+You only need to follow these steps once per project (and again whenever you want to add a new package).
 
 ---
+
+## Basic configuration
 
 ### Step 0: Install `uv`
 
@@ -77,32 +75,9 @@ the result into two files that you don't need to edit by hand:
 Together they're the "recipe" that `uv run` (step 5) and the CBS export (step 4)
 both read from.
 
-**Some packages aren't on the normal package index and need to be installed
-from a URL instead** — for example the PyTorch Geometric (PyG) wheels used by
-`pyg-lib`, `torch-sparse`, etc. The URL for that is kept in one place,
-`pyproject.toml`, instead of in `requirements.in`:
-
-```toml
-[tool.uv.pip]
-find-links = ["https://data.pyg.org/whl/torch-2.9.0+cpu.html"]
-emit-find-links = true
-```
-
-- `find-links` makes `uv pip compile` (step 4) look at that URL too, so you
-  don't need to pass `--find-links` again on that command.
-- `emit-find-links = true` makes `uv pip compile` write the `--find-links`
-  line at the top of the generated `environment0000.txt`. That way, whoever
-  installs that file with plain `pip install -r environment0000.txt` (e.g.
-  CBS RA) automatically knows where to find these packages too — without it,
-  `pip` would fail the same way `uv` did before you added this section.
-
-This `[tool.uv.pip]` section only applies to `uv pip compile` (step 4). If you
-add a new PyG package and need to run `uv add` or `uv lock` again (step 3),
-pass the same URL on the command itself:
-
-```sh
-uv add --bounds exact -r requirements.in --find-links https://data.pyg.org/whl/torch-2.9.0+cpu.html
-```
+If this command fails with an error, see "Advanced configuration" below — most
+failures come from specific packages (PyTorch Geometric, flash-attn, etc.) that
+need a bit of extra setup in `pyproject.toml`.
 
 ### Step 4: Create the file to send to CBS
 
@@ -126,3 +101,63 @@ uv run jupyterlab
 `uv run <command>` runs any command (Jupyter, a script, etc.) using exactly the
 packages you listed, installing anything missing automatically. This way, what you
 test on your own computer matches what you'll have access to in CBS RA.
+
+---
+
+## Advanced configuration
+
+A few packages need extra settings in `pyproject.toml`, added by hand, before
+`uv add` / `uv lock` / `uv pip compile` will work. These settings only need to
+be added once — after that, steps 3 and 4 above work normally.
+
+### Packages installed from a URL instead of the normal package index
+
+Some packages aren't on the normal package index and need to be installed from
+a URL instead — for example the PyTorch Geometric (PyG) wheels used by
+`pyg-lib`, `torch-sparse`, etc. Add the URL under `[tool.uv]` (used by `uv add`
+and `uv lock`) and under `[tool.uv.pip]` (used by `uv pip compile`):
+
+```toml
+[tool.uv]
+find-links = ["https://data.pyg.org/whl/torch-2.9.0+cpu.html"]
+
+[tool.uv.pip]
+find-links = ["https://data.pyg.org/whl/torch-2.9.0+cpu.html"]
+emit-find-links = true
+```
+
+- `[tool.uv] find-links` makes `uv add`/`uv lock` (step 3) look at that URL.
+- `[tool.uv.pip] find-links` makes `uv pip compile` (step 4) look at that URL.
+  Both are needed — they're read by different commands.
+- `emit-find-links = true` makes `uv pip compile` write the `--find-links`
+  line at the top of the generated `environment0000.txt`. That way, whoever
+  installs that file with plain `pip install -r environment0000.txt` (e.g.
+  CBS RA) automatically knows where to find these packages too — without it,
+  `pip` would fail to find them.
+
+If you don't add this, `uv` may report that no matching version exists for a
+package, even though it's listed correctly in `requirements.in`.
+
+### Packages that fail to build with "ModuleNotFoundError: No module named 'torch'"
+
+Some packages (e.g. `torch-cluster`, `torch-scatter`, `torch-sparse`,
+`torch-spline-conv`, `flash-attn`) are compiled from source, and their build
+script imports `torch` without declaring it as something it needs in order to
+build — so `uv` builds them in a clean environment that doesn't have `torch`
+yet, and the build fails with `ModuleNotFoundError: No module named 'torch'`.
+
+The error message includes the fix. Add the affected package(s) under
+`[tool.uv.extra-build-dependencies]` in `pyproject.toml`:
+
+```toml
+[tool.uv.extra-build-dependencies]
+flash-attn = ["torch"]
+torch-sparse = ["torch"]
+torch-scatter = ["torch"]
+torch-cluster = ["torch"]
+torch-spline-conv = ["torch"]
+```
+
+This tells `uv` to install `torch` into the temporary build environment first,
+so the package's build script can find it. Without this, both `uv add` and
+`uv pip compile` fail with the same error.
