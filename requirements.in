@@ -61,7 +61,6 @@ lifelines # survival analysis
 torch # deep learning framework
 #tensorflow (nit does not play nicely with pip)
 torch-geometric # graph neural networks
-pyg-lib # compiled ops for PyG
 torch-sparse # sparse tensor ops for PyG
 torch-scatter # scatter ops for PyG
 #torch-cluster # clustering ops for PyG deprecated

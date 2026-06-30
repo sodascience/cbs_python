@@ -303,13 +303,6 @@ def _():
     assert st.sizes() == [3, 3]
     return meta("torch-sparse")
 
-
-@test("pyg-lib")
-def _():
-    import pyg_lib
-    return f"v{pyg_lib.__version__} (cuda={pyg_lib.cuda_version()})"
-
-
 @test("torch-geometric")
 def _():
     import torch
