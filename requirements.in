@@ -61,10 +61,11 @@ lifelines # survival analysis
 torch # deep learning framework
 #tensorflow (nit does not play nicely with pip)
 torch-geometric # graph neural networks
+pyg-lib # compiled ops for PyG
 torch-sparse # sparse tensor ops for PyG
 torch-scatter # scatter ops for PyG
-torch-cluster # clustering ops for PyG
-torch-spline-conv # spline-based conv ops for PyG
+#torch-cluster # clustering ops for PyG deprecated
+#torch-spline-conv # spline-based conv ops for PyG
 #torch-quiver #not yet available for windows
 #intel-extension-for-pytorch #not yet available for windows
 #keras

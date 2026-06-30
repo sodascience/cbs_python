@@ -114,26 +114,43 @@ be added once — after that, steps 3 and 4 above work normally.
 
 Some packages aren't on the normal package index and need to be installed from
 a URL instead — for example the PyTorch Geometric (PyG) wheels used by
-`pyg-lib`, `torch-sparse`, etc. Add the URL under `[tool.uv]` (used by `uv add`
-and `uv lock`) and under `[tool.uv.pip]` (used by `uv pip compile`):
+`pyg-lib`, `torch-scatter`, `torch-sparse`, etc.
+
+This needs two separate settings, because two different commands read two
+different parts of `pyproject.toml`:
+
+- `uv add` / `uv lock` (step 3) read `[[tool.uv.index]]` and `[tool.uv.sources]`.
+- `uv pip compile` (step 4) reads `[tool.uv.pip]`.
+
+Both are needed. Add all of the following:
 
 ```toml
 [tool.uv.pip]
-find-links = ["https://data.pyg.org/whl/torch-2.9.0+cpu.html"]
+find-links = ["https://data.pyg.org/whl/torch-2.12.0+cpu.html"]
 emit-find-links = true
+
+[[tool.uv.index]]
+name = "pyg-cpu"
+url = "https://data.pyg.org/whl/torch-2.12.0+cpu.html"
+format = "flat"
+explicit = true
+
+[tool.uv.sources]
+pyg-lib = { index = "pyg-cpu" }
+torch-scatter = { index = "pyg-cpu" }
+torch-sparse = { index = "pyg-cpu" }
 ```
 
-- `[tool.uv] find-links` makes `uv add`/`uv lock` (step 3) look at that URL.
-- `[tool.uv.pip] find-links` makes `uv pip compile` (step 4) look at that URL.
-  Both are needed — they're read by different commands.
-- `emit-find-links = true` makes `uv pip compile` write the `--find-links`
-  line at the top of the generated `environment0000.txt`. That way, whoever
-  installs that file with plain `pip install -r environment0000.txt` (e.g.
-  CBS RA) automatically knows where to find these packages too — without it,
-  `pip` would fail to find them.
+What each part does:
 
-If you don't add this, `uv` may report that no matching version exists for a
-package, even though it's listed correctly in `requirements.in`.
+- `[[tool.uv.index]]` defines a named extra index (`pyg-cpu`) pointing at the PyG wheel URL. `format = "flat"` tells `uv` the URL is a plain HTML list of wheel files rather than a normal package index. `explicit = true` means this index is only used for packages that are explicitly assigned to it below — it is *not* consulted for anything else, so it won't accidentally pull unrelated packages from the PyG mirror.
+- `[tool.uv.sources]` assigns the specific packages (`pyg-lib`, `torch-scatter`,`torch-sparse`) to that index. These are the ones that must come from the PyG URL; everything else still comes from the normal index.
+- `[tool.uv.pip] find-links` makes `uv pip compile` (step 4) look at the same URL, since it doesn't use the index/sources mechanism above.
+- `emit-find-links = true` makes `uv pip compile` write the `--find-links` line at the top of the generated `environment0000.txt`. That way, whoever installs that file with plain `pip install -r environment0000.txt` (e.g. CBS RA) automatically knows where to find these packages too — without it, `pip` would fail to find them.
+
+Make sure the torch version in the URL (`torch-2.12.0+cpu`) matches the `torch` version pinned in your dependencies. The PyG wheels are compiled against a specific torch build, and a mismatch causes `undefined symbol` errors at import time.
+
+If you don't add this, `uv` may report that no matching version exists for a package, even though it's listed correctly in `requirements.in`.
 
 ### Packages that fail to build with "ModuleNotFoundError: No module named 'torch'"
 
@@ -149,12 +166,20 @@ The error message includes the fix. Add the affected package(s) under
 ```toml
 [tool.uv.extra-build-dependencies]
 flash-attn = ["torch"]
-torch-sparse = ["torch"]
 torch-scatter = ["torch"]
-torch-cluster = ["torch"]
-torch-spline-conv = ["torch"]
+torch-sparse = ["torch"]
 ```
 
 This tells `uv` to install `torch` into the temporary build environment first,
 so the package's build script can find it. Without this, both `uv add` and
 `uv pip compile` fail with the same error.
+
+### Step 6: Check that the packages actually work before sending
+
+Resolving versions (step 3) only proves the packages *install* together — it doesn't prove they actually *run*. Some failures only show up later, when a package is imported or first used. CBS RA cannot easily fix a broken environment after the fact, so it's worth catching these problems on your own computer first.
+
+A quick way to check is to import each package you rely on and run a tiny operation with it, so you confirm it both loads and works before the environment is locked in. You can do this however you like — a short script, a notebook, or a few lines in a Python session.
+
+This repository includes `test.py` as an example of this kind of check; run it with `uv run test.py`, and adapt it to whatever packages your project uses.
+
+If anything fails, fix it before emailing the file to CBS (see "Advanced configuration" below for common causes). The goal isn't an exhaustive test suite — just enough to confirm each library you depend on loads and does something basic.
