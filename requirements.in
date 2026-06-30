@@ -58,9 +58,11 @@ statsmodels # statistical models
 #pymc3 (pymc3 is at the current version not playing nicely with the other packages in pip)
 lifelines # survival analysis
 # Deep learning
-torch # deep learning framework
+torch==2.12.* # deep learning framework; must match the torch version in the --find-links URL below, or PyG's compiled wheels (pyg-lib, torch-sparse, etc.) will fail to load
 #tensorflow (nit does not play nicely with pip)
 torch-geometric # graph neural networks
+# PyG CPU wheels are not on the normal package index, only at this URL:
+--find-links https://data.pyg.org/whl/torch-2.12.0+cpu.html
 pyg-lib # compiled ops for PyG
 torch-sparse # sparse tensor ops for PyG
 torch-scatter # scatter ops for PyG
