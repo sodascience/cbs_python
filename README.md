@@ -1,106 +1,133 @@
-## Configuring Python in CBS Remote Access (RA)
+## What this is for
 
-**Python is not installed by default at CBS RA (yet).** To activate Python, contact the CBS microdata team at [`microdata@cbs.nl`](mailto:microdata@cbs.nl).
+CBS Remote Access (RA) only lets you use Python packages that CBS has approved and installed in advance. To get a package approved, you submit a file pip requirements.txt file listing exactly which packages (and versions) you need, and CBS installs them for you.
 
-### Default Python Packages
+This repository helps you build that file correctly, without needing to understand Python packaging in depth. You will:
 
-By default, some packages are available in Python at CBS RA, such as `pandas`, `pyreadstat` or `matplotlib`
+0. Install a tool called `uv` that does the hard work for you.
+1. Download this repository to your computer.
+2. Write down which packages you want, in a simple text file (`requirements.in`).
+3. Run one command that turns that list into a ready-to-send file (`environment0000.txt`).
+4. Test that file on your own computer before sending it (optional, but recommended).
+5. Email the file to CBS.
+6. Optionally, set up the same packages on your own computer so you can work locally too.
 
-If you require additional packages or specific versions, follow the steps below to create and submit your own Python environment.
-
----
-
-### Creating a Custom Python Environment
-
-Follow these instructions to set up and submit a customized Python environment. You need to use a **Windows** computer.
-
-#### Step 1: Check Existing Environment
-
-- Check if `environment0000.txt` (replace `0000` with your actual project number) already contains the required packages and suitable versions.
-- **If yes:** Send this file directly to CBS.
-- **If no:** Continue to Step 2.
-
-#### Step 2: Create the Environment (Windows + Conda)
-
-Install conda locally (only needed if you do not already have Conda installed):
-- Follow the official Conda installation instructions [here](https://conda.io/projects/conda/en/latest/user-guide/install/index.html#regular-installation).
-- If you're unfamiliar with command-line tools, consider installing [Anaconda](https://www.anaconda.com/products/individual) instead.
-
-On your local Windows machine:
-
-```sh
-conda create -n 0000 python
-conda activate 0000
-conda install pip
-pip install package_name
-```
-
-Replace `package_name` with the packages you need (e.g., `pip install numpy`). If you want to install all the packages in the requirements.txt file in this repository, use `pip install -r requirements.txt`
-
-**Note:** If using Jupyter Notebook or Spyder, install these explicitly, e.g.:
-
-```sh
-pip install jupyter spyder
-```
-
-#### Step 3: Export the Environment
-
-Export the environment into a requirements file:
-
-```sh
-pip freeze > C:\temp\environment0000.txt
-```
-
-Check `environment0000.txt` for local paths (`file://`). If found, regenerate using:
-
-```sh
-pip list --format=freeze > C:\temp\environment0000.txt
-```
-
-#### Step 4: Verify Environment
-
-Validate your environment by removing and recreating it:
-
-```sh
-conda remove -n 0000 --all
-conda create -n 0000 
-conda activate 0000
-conda install pip
-pip install -r C:\temp\environment0000.txt
-```
-
-Test thoroughly before submission by running python and importing your packages one by one.
-
-#### Step 5: Submit Your Environment
-
-Send your verified `environment0000.txt`  (replace 0000 by your project number) to CBS via email.
-
-
+You only need to follow these steps once per project (and again whenever you want to add or remove a package).
 
 ---
 
-## Using Python at CBS RA
+## Basic configuration
 
-We recommend to use Python through Visual Studio Code (VS Code), installed by default:
+### Step 0: Install `uv`
 
-- In VS Code, select the Python interpreter in the bottom-right corner of the editor.
+`uv` is the tool that does the heavy lifting (figuring out compatible package
+versions). Install it once, following the official instructions:
+https://docs.astral.sh/uv/getting-started/installation/
 
-You could also use Python through Jupyter in RA, for that, open an Anaconda terminal in the RA and run:
+If you've never used a terminal before: a terminal is just a window where you
+type commands instead of clicking buttons. On Windows, open "PowerShell" or
+"Command Prompt"; on Mac, open "Terminal" (both are pre-installed). The
+installation instructions above include a single command to paste in and run.
+
+### Step 1: Download this repository to your computer
+
+If you're comfortable with git:
 
 ```sh
-conda activate 0000
-jupyter notebook --notebook-dir=H:
+git clone <repo-url>
+cd cbs_python
 ```
 
-This opens Jupyter in your shared directory (`H:`).
+Otherwise, download the repository as a ZIP from its webpage and unzip it into a
+local folder.
 
----
+### Step 2: Say which packages you want
 
-## Contact
+Open `requirements.in` in a text editor. It's a plain list of package names, one
+per line, already organized into groups (data handling, visualization, etc.), with
+a short comment next to each one explaining what it's for.
 
-This documentation is maintained by the [ODISSEI Social Data Science (SoDa)](https://odissei-data.nl/nl/soda/) team.
+- To add a package, add a new line with its name.
+- To remove one, delete its line (or put a `#` in front of it to keep it for later).
 
-For technical questions or suggestions:
+You don't need to write version numbers — the next step figures those out for you.
 
-- File an issue in the project's issue tracker, or
-- Contact [Javier Garcia-Bernardo](https://github.com/jgarciab).
+### Step 3: Let `uv` work out the exact versions
+
+CBS RA runs Windows, so generate a Windows-specific version of the package list. Open a terminal in the repository folder and run:
+
+```sh
+uv pip compile requirements.in --python-version 3.12 --python-platform windows --no-annotate --no-header --emit-find-links -o environment0000.txt
+```
+
+`--emit-find-links` is needed because some packages (e.g. the PyTorch Geometric
+ones) aren't on the normal package index — `requirements.in` points `pip` at
+an extra URL for those via a `--find-links` line, and this flag copies that
+line into `environment0000.txt` so the file still works when installed on its
+own with plain `pip`, without `requirements.in` alongside it.
+
+Rename `environment0000.txt` so `0000` matches your project number. This file can
+be installed with plain `pip` (no `uv` needed), which is what CBS RA will do.
+
+### Step 4: Test that it works in your own Windows computer [optional, highly recommended]
+
+Before sending the file to CBS, test it in a fresh, empty environment (a
+"venv"). This catches problems early, while you can still fix them. The
+easiest way is with `uv`, which creates the venv and installs into it without
+needing to activate anything:
+
+```sh
+uv venv ~/.venvs/cbs-test
+uv pip install -r environment0000.txt --python ~/.venvs/cbs-test
+```
+
+If this finishes without errors, the file is ready to send. You can also run
+`check_environment.py`, which goes through every package in `requirements.in`
+and checks that it actually imports and reports a version (not just that it
+installed):
+
+```sh
+uv run --python ~/.venvs/cbs-test python check_environment.py
+```
+
+When you're done testing, delete the test environment:
+
+```sh
+rm -rf ~/.venvs/cbs-test
+```
+
+(If you want to test with plain `pip` instead — closer to exactly what CBS
+will run — replace the two `uv` commands above with `python -m venv ~/.venvs/cbs-test`,
+then activate it with `~/.venvs/cbs-test/Scripts/activate` on Windows or
+`source ~/.venvs/cbs-test/bin/activate` on Mac/Linux, and run
+`pip install -r environment0000.txt`.)
+
+### Step 5: Email environmnet000.txt to CBS
+
+Email it to CBS and ask them to activate Python in your project and install the environment.
+
+### Step 6 [optional]: Work on your own non-Windows computer
+
+The environment created in Step 3 is locked to Windows
+(`--python-platform windows`), so it won't install on macOS or Linux. To work
+locally on a non-Windows computer, compile a second file for your own
+platform — just drop `--python-platform windows` so `uv` resolves wheels for
+whatever computer you're actually running on:
+
+```sh
+uv pip compile requirements.in --python-version 3.12 --no-annotate --no-header --emit-find-links -o environment_local.txt
+uv venv ~/.venvs/cbs-python
+uv pip install -r environment_local.txt --python ~/.venvs/cbs-python
+```
+
+This creates a real environment (not a throwaway test one like Step 4), so
+you can use it for actual work:
+
+```sh
+uv run --python ~/.venvs/cbs-python jupyterlab
+```
+
+`uv run <command>` runs any command (Jupyter, a script, etc.) using that
+environment, installing anything missing automatically. You can also run
+`uv run --python ~/.venvs/cbs-python python check_environment.py` here to
+double-check everything imports correctly on your own machine.
