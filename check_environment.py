@@ -20,6 +20,7 @@ IMPORT_NAME = {
     "umap-learn": "umap",
     "metasyn-disclosure": "metasyncontrib.disclosure",
     "jupysql": "sql",
+    "ibis-framework": "ibis",
 }
 # packages with no importable module (CLI tools) - version-check only
 NOT_IMPORTABLE = {"ruff"}

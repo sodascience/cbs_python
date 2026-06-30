@@ -11,7 +11,7 @@ scipy # scientific computing
 polars # fast dataframes
 duckdb # in-process SQL database
 duckdb-engine # SQLAlchemy driver for duckdb
-ibis # dataframe API over SQL backends
+ibis-framework # dataframe API over SQL backends
 matplotlib # plotting
 seaborn # statistical plotting
 networkx # graph analysis
