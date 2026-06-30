@@ -9,7 +9,7 @@ This repository helps you build that file correctly, without needing to understa
 2. Write down which packages you want, in a simple text file (`requirements.in`).
 3. Run one command that turns that list into a ready-to-send file (`environment0000.txt`).
 4. Test that file on your own computer before sending it (optional, but recommended).
-5. Email the file to CBS.
+5. Send the file to CBS through microdata.cbs.nl
 6. Optionally, set up the same packages on your own computer so you can work locally too.
 
 You only need to follow these steps once per project (and again whenever you want to add or remove a package).
@@ -102,9 +102,9 @@ then activate it with `~/.venvs/cbs-test/Scripts/activate` on Windows or
 `source ~/.venvs/cbs-test/bin/activate` on Mac/Linux, and run
 `pip install -r environment0000.txt`.)
 
-### Step 5: Email environmnet000.txt to CBS
+### Step 5: Send environmnet000.txt to CBS
 
-Email it to CBS and ask them to activate Python in your project and install the environment.
+Send it to CBS through microdata.cbs.nl and ask them to activate Python in your project and install the environment.
 
 ### Step 6 [optional]: Work on your own non-Windows computer
 
