@@ -73,7 +73,6 @@ torch-scatter # scatter ops for PyG
 #keras
 #dgl
 gensim # topic modeling/word embeddings
-#pytorch-lightning
 transformers # pretrained NLP/LLM models
 umap-learn # dimensionality reduction
 #inspect-ai
@@ -86,7 +85,23 @@ accelerate # multi-GPU/mixed-precision training helper
 #annoy
 # Configuration files
 json5 # JSON5 parsing
-## Testing
+tomlkit
+pydantic
+## Dev tools
 pytest # testing framework
 ruff # linter/formatter
 pre-commit # git hook manager
+mypy
+uv
+## Lifecourse GPT
+pytorch-lightning
+lightning
+lightning-utilities
+torchmetrics
+jsonargparse
+docstring-parser
+typeshed-client
+pytest-rerunfailures
+pytest-timeout
+## Misc
+pytz # https://github.com/duckdb/duckdb-python/discussions/406
